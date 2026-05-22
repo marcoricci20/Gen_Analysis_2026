@@ -1,0 +1,28 @@
+2026-05-05 16:05:04 DEBUG:busco.run_BUSCO	Command line: /sw/arch/eb/software/BUSCO/5.8.2-gfbf-2024a/bin/busco -i /home/ricci/Genome_analysis_2026/2_masking/1_polishing.fasta.masked -m genome -l viridiplantae_odb10 -o /home/ricci/Genome_analysis_2026/4_assembly-evaluation/BUSCO
+2026-05-05 16:05:04 INFO:busco.run_BUSCO	***** Start a BUSCO v5.8.2 analysis, current time: 05/05/2026 16:05:04 *****
+2026-05-05 16:05:04 DEBUG:busco.ConfigManager	Getting config file
+2026-05-05 16:05:04 INFO:busco.ConfigManager	Configuring BUSCO with /sw/arch/eb/software/BUSCO/5.8.2-gfbf-2024a/config/config.ini
+2026-05-05 16:05:04 INFO:busco.BuscoConfig	Running genome mode
+2026-05-05 16:05:04 ERROR:busco.BuscoRunner	A run with the name home/ricci/Genome_analysis_2026/4_assembly-evaluation/BUSCO already exists...
+	If you are sure you wish to overwrite existing files, please use the -f (force) option
+2026-05-05 16:05:04 DEBUG:busco.BuscoRunner	A run with the name home/ricci/Genome_analysis_2026/4_assembly-evaluation/BUSCO already exists...
+	If you are sure you wish to overwrite existing files, please use the -f (force) option
+Traceback (most recent call last):
+  File "/sw/arch/eb/software/BUSCO/5.8.2-gfbf-2024a/lib/python3.12/site-packages/busco/run_BUSCO.py", line 68, in run
+    self.load_config()
+  File "/sw/arch/eb/software/BUSCO/5.8.2-gfbf-2024a/lib/python3.12/site-packages/busco/run_BUSCO.py", line 60, in load_config
+    self.config_manager.load_busco_config_main()
+  File "/sw/arch/eb/software/BUSCO/5.8.2-gfbf-2024a/lib/python3.12/site-packages/busco/BuscoLogger.py", line 62, in wrapped_func
+    self.retval = func(*args, **kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/eb/software/BUSCO/5.8.2-gfbf-2024a/lib/python3.12/site-packages/busco/ConfigManager.py", line 61, in load_busco_config_main
+    self.config_main.validate()
+  File "/sw/arch/eb/software/BUSCO/5.8.2-gfbf-2024a/lib/python3.12/site-packages/busco/BuscoConfig.py", line 658, in validate
+    self._check_no_previous_run()
+  File "/sw/arch/eb/software/BUSCO/5.8.2-gfbf-2024a/lib/python3.12/site-packages/busco/BuscoConfig.py", line 863, in _check_no_previous_run
+    raise BatchFatalError(
+busco.Exceptions.BatchFatalError: A run with the name home/ricci/Genome_analysis_2026/4_assembly-evaluation/BUSCO already exists...
+	If you are sure you wish to overwrite existing files, please use the -f (force) option
+2026-05-05 16:05:04 ERROR:busco.BuscoRunner	BUSCO analysis failed!
+2026-05-05 16:05:04 ERROR:busco.BuscoRunner	Check the logs, read the user guide (https://busco.ezlab.org/busco_userguide.html), and check the BUSCO issue board on https://gitlab.com/ezlab/busco/issues
+

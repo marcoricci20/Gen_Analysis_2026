@@ -1,0 +1,30 @@
+#!/bin/bash -l
+#SBATCH -A uppmax2026-1-61
+#SBATCH -M pelle
+#SBATCH -c 2
+#SBATCH -t 15:00:00
+#SBATCH -J Ricci_BWA_DNA
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user marco.ricci.evobio@gmail.com
+#SBATCH --output=Ricci_BWA_DNA.out
+#SBATCH --error=/home/ricci/Genome_analysis_2026/bWA.err
+
+module load bwa-mem2/2.3-GCC-13.3.0 SAMtools/1.22.1-GCC-13.3.0
+
+OUTDIR="/home/ricci/Genome_analysis_2026/Nanopore/BWA"
+
+# index the assembly
+bwa-mem2 index $OUTDIR/assembly.fasta
+
+# map paired short reads to the assembly
+bwa-mem2 mem $OUTDIR/assembly.fasta \
+$OUTDIR/paired_trimmed_1.fastq.gz \
+$OUTDIR/paired_trimmed_2.fastq.gz \
+> $OUTDIR/mapped_DNA_reads.sam
+
+# convert SAM to BAM
+samtools view -bS $OUTDIR/mapped_DNA_reads.sam > $OUTDIR/mapped_DNA_reads.bam
+
+# sort and index
+samtools sort $OUTDIR/mapped_DNA_reads.bam -o $OUTDIR/sorted_DNA_reads.bam
+samtools index $OUTDIR/sorted_DNA_reads.bam
